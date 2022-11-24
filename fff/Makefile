@@ -1,19 +1,18 @@
 CFLAGS=-std=c99 -Wall -O2 -I./
-SRC=main.c mylib.c mocks.c
+
+SRC=main.c lib.c otherlib.c
 OBJ=$(patsubst %.c,%.o,$(SRC))
-TEST_SRC=test.c mylib.c
+
+TEST_SRC=test.c lib.c
 TEST_OBJ=$(patsubst %.c,%.o,$(TEST_SRC))
 
-all : clean release
+all : clean main
 
-release : $(OBJ)
-	gcc -o release $^ $(CFLAGS)
+main : $(OBJ)
+	gcc -o $@ $^ $(CFLAGS)
 
 test : $(TEST_OBJ)
-	gcc -o test $^ $(CFLAGS)
-
-objects : $(TEST_OBJETS) $(OBJ)
-	gcc -c -o $@ $^ $(CFLAGS)
+	gcc -o $@ $^ $(CFLAGS)
 
 clean :
-	rm -f main *.o
+	rm -f main test *.o

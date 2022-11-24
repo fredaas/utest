@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "mylib.h"
+#include "lib.h"
 
 int main(void)
 {
-    char *msg = "Hello, World!";
-    print_title(msg);
+    print_title("foo");
+    buff_write();
     return 0;
 }
